@@ -112,3 +112,24 @@ Order Service (secured)
 	•	Implement Distributed Tracing with Zipkin/Jaeger
 	•	Add Prometheus + Grafana monitoring
 	•	Containerize all services with Docker Compose
+
+
+ 📦 Order & Inventory Flow
+
+When a customer places an order, the system ensures stock availability before confirming. The flow is as follows:
+	1.	Order Request Received
+	•	The client sends an authenticated request to the Order Service through the API Gateway.
+	•	The Order Service checks the requested quantity against the Inventory Service.
+	2.	If Stock is Available
+	•	The Order Service confirms the order immediately.
+	•	An OrderPlacedEvent is published to Kafka.
+	•	The order status is updated to CONFIRMED via an OrderStatusUpdateEvent.
+	3.	If Stock is Low
+	•	The Order Service creates a SupplyRequestEvent and publishes it to Kafka.
+	•	This event is picked up by the Supplier Service (or supplier ordering logic) to restock the product to the desired restocking level.
+	•	The order status is set to WAITING_FOR_RESTOCK.
+	4.	Supplier Fulfillment
+	•	Once the supplier delivers the required quantity, the Inventory Service updates the stock.
+	•	The Order Service is notified (via Kafka or a callback) that the product is now in stock.
+	•	The pending order status is updated to CONFIRMED.
+
