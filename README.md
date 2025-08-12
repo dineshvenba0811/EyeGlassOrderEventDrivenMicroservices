@@ -18,6 +18,7 @@ It demonstrates a secure **microservice architecture** with the following key fe
 	•	Add Prometheus + Grafana monitoring
 	•	Containerize all services with Docker Compose
  	•	Integeration test with test containers
+    •   Swagger Documentation 
 
  
 ## 🏗 Architecture
