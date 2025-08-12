@@ -12,6 +12,14 @@ It demonstrates a secure **microservice architecture** with the following key fe
 
 ---
 
+ 🛠 Future Enhancements
+	•	Add Circuit Breaker with Resilience4j
+	•	Implement Distributed Tracing with Zipkin/Jaeger
+	•	Add Prometheus + Grafana monitoring
+	•	Containerize all services with Docker Compose
+ 	•	Integeration test with test containers
+
+ 
 ## 🏗 Architecture
 
 ### **Service Components**
@@ -107,11 +115,7 @@ Order Service (secured)
   supplier-order-requested - published by inventory service for restock
   order-status-updated - for updating the order status
 
-  🛠 Future Enhancements
-	•	Add Circuit Breaker with Resilience4j
-	•	Implement Distributed Tracing with Zipkin/Jaeger
-	•	Add Prometheus + Grafana monitoring
-	•	Containerize all services with Docker Compose
+ 
 
 
  📦 Order & Inventory Flow
