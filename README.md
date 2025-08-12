@@ -106,3 +106,9 @@ Order Service (secured)
 	order-placed — published by Order Service, consumed by Inventory Service
   supplier-order-requested - published by inventory service for restock
   order-status-updated - for updating the order status
+
+  🛠 Future Enhancements
+	•	Add Circuit Breaker with Resilience4j
+	•	Implement Distributed Tracing with Zipkin/Jaeger
+	•	Add Prometheus + Grafana monitoring
+	•	Containerize all services with Docker Compose
