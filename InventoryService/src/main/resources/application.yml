@@ -1,0 +1,64 @@
+spring:
+  application:
+    name: inventoryservice
+
+  datasource:
+    url: jdbc:postgresql://localhost:5433/inventory_service
+    username: postgres
+    password: postgres
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+  kafka:
+    bootstrap-servers: localhost:9092   # if running in Docker, use your broker service name
+
+    # ---- CONSUMER (for order-placed) ----
+    consumer:
+      group-id: inventory-service-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      properties:
+        # delegate to JsonDeserializer
+        spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
+        # trust packages
+        spring.json.trusted.packages: "*"
+        # IMPORTANT: ignore producer type headers and use our local class
+        spring.json.use.type.headers: false
+        spring.json.value.default.type: com.banyan.smartDocuments.InventoryService.event.OrderPlacedEvent
+
+    listener:
+      ack-mode: record      # optional; process one record at a time
+      missing-topics-fatal: false
+
+    # ---- PRODUCER (for supplier events) ----
+    producer:
+      acks: all
+      retries: 3
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.add.type.headers: false   # lets consumers auto-detect event classes
+
+    template:
+      default-topic: supplier-order-requested
+
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+        security: DEBUG
+
+server:
+  port: 8089
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+    prefer-ip-address: true
