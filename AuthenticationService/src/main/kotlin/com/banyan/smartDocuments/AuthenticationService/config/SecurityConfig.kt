@@ -13,6 +13,10 @@ import org.springframework.security.web.authentication.HttpStatusEntryPoint
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 import org.springframework.security.config.annotation.web.invoke
 
+/**SecurityFilterChain** is a configuration class that sets up the security filter chain for the application.
+ * It configures HTTP security, session management, authorization rules, and exception handling.
+ * It also registers the `JwtAuthenticationFilter` to handle JWT authentication.
+ */
 @Configuration
 class SecurityConfig {
 

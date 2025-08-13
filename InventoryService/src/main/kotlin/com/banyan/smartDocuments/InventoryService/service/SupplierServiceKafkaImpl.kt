@@ -23,7 +23,7 @@ import java.time.LocalDateTime
 class SupplierServiceKafkaImpl (
     private val kafkaTemplate: KafkaTemplate<String, SupplierOrderRequestedEvent>): SupplierService {
 
-    private val logger = LoggerFactory.getLogger(OrderConsumer::class.java)
+    private val logger = LoggerFactory.getLogger(SupplierServiceKafkaImpl::class.java)
 
 
     override fun orderFromSupplier(orderId:Long, productId: Long, productType: String, requiredQuantity: Int): SupplierOrderRef {

@@ -8,6 +8,10 @@ import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.client.WebClient
 
+/** * Gateway filter factory for JWT authentication.
+ * This filter checks if the request is secured and validates the JWT token.
+ * If the token is invalid or missing, it responds with an UNAUTHORIZED status.
+ */
 @Component
 class JwtAuthGatewayFilterFactory(
     private val routeValidator: RouteValidator,

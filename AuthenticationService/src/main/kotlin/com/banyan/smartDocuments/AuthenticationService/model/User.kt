@@ -12,7 +12,15 @@ import jakarta.persistence.JoinTable
 import jakarta.persistence.ManyToMany
 import jakarta.persistence.Table
 
-
+/**
+ * User is an entity class that represents a user in the system.
+ * It is mapped to the "Users" table in the database.
+ *
+ * @property id The unique identifier for the user.
+ * @property username The username of the user, which must be unique and not null.
+ * @property password The password of the user, which must not be null.
+ * @property roles The set of roles assigned to the user, fetched eagerly and persisted with cascade.
+ */
 @Entity
 @Table(name = "Users")
 class User(

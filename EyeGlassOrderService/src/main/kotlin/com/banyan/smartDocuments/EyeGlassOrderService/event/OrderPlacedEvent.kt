@@ -1,5 +1,11 @@
 package com.banyan.smartDocuments.EyeGlassOrderService.event
 
+/* * OrderPlacedEvent.kt
+ *
+ * This file defines the OrderPlacedEvent data class, which represents an event that is published when an order is placed.
+ * It includes details about the order such as order ID, customer ID, items in the order, delivery address, payment method,
+ * total amount, and the timestamp of when the order was created.
+ */
 data class OrderPlacedEvent(
     val orderId: Long,
     val customerId: Long,

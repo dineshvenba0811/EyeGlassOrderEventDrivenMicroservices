@@ -5,7 +5,11 @@ import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.NotEmpty
 import jakarta.validation.constraints.NotNull
 
-
+/**
+ * OrderRequest** is a data class that represents a request to place an order for eyeglasses.
+ * It includes fields for the customer ID, delivery address, payment method, and a list of items in the order.
+ * The class uses validation annotations to ensure that the fields meet certain criteria.
+ */
 data class OrderRequest(
     @field:NotNull(message = "Customer ID is required")
     val customerId: Long?,

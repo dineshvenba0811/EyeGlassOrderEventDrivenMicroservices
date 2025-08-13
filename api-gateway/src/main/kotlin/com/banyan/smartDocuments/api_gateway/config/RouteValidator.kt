@@ -3,6 +3,11 @@ package com.banyan.smartDocuments.api_gateway.config
 import org.springframework.http.server.reactive.ServerHttpRequest
 import org.springframework.stereotype.Component
 
+/**
+ * Validates if a request is secured or not based on its path.
+ * This is used to determine if a request should be authenticated or not.
+ * The paths that are considered open (not secured) are defined in the `openApiEndpoints` list.
+ */
 @Component
 class RouteValidator {
     private val openApiEndpoints = listOf(

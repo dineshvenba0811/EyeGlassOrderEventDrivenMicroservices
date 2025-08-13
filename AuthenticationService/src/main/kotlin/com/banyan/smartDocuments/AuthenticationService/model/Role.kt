@@ -3,6 +3,12 @@ package com.banyan.smartDocuments.AuthenticationService.model
 import jakarta.persistence.Entity
 import jakarta.persistence.*
 
+/* * Role is an entity class that represents a user role in the system.
+ * It is mapped to the "Roles" table in the database.
+ *
+ * @property id The unique identifier for the role.
+ * @property roleName The name of the role, which must be unique and not null.
+ */
 @Entity
 @Table(name = "Roles")
 class Role(

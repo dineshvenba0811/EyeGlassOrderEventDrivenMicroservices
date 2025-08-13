@@ -12,6 +12,11 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDateTime
 
+/**
+ * OrderServiceImpl** is the implementation of the `OrderService` interface.
+ * It handles the business logic for placing orders, including saving the order to the database
+ * and publishing an event to Kafka.
+ */
 @Service
 class OrderServiceImpl(  private val orderRepository: OrderRepository,
     private val KafkaTemplate: org.springframework.kafka.core.KafkaTemplate<String, OrderPlacedEvent>
@@ -22,7 +27,7 @@ class OrderServiceImpl(  private val orderRepository: OrderRepository,
 
     @Transactional
     override fun placeOrder(orderRequest: OrderRequest) {
-
+        logger.info("Received order request: {}", orderRequest)
         val order = Order().apply {
             customerId = orderRequest.customerId!!
             deliveryAddress = orderRequest.deliveryAddress
@@ -33,14 +38,13 @@ class OrderServiceImpl(  private val orderRepository: OrderRepository,
 
         var totalAmount = 0.0
 
-        // ✅ Use addItem to ensure bidirectional binding
         orderRequest.items.forEach { itemRequest ->
             val item = OrderItem().apply {
                 productId = itemRequest.productId!!
                 quantity = itemRequest.quantity
                 productType = itemRequest.productType
             }
-            order.addItem(item) // ✅ ensures item.order = order + adds to list
+            order.addItem(item)
             totalAmount += item.quantity * 100.0
         }
 

@@ -11,6 +11,9 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component
 import org.springframework.web.filter.OncePerRequestFilter
 
+/** * JwtAuthenticationFilter is a filter that checks for JWT in the Authorization header
+ * and sets the authentication in the SecurityContext if the token is valid.
+ */
 @Component
 class JwtAuthenticationFilter (private val jwtUtil: JwtUtil,
                                private val userDetailsService: UserDetailsService

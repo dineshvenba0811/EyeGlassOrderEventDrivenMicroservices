@@ -3,6 +3,10 @@ package com.banyan.smartDocuments.AuthenticationService.service
 import com.banyan.smartDocuments.AuthenticationService.model.NewUserRegistrationRequest
 import org.springframework.stereotype.Component
 
+/**
+ * AuthenticationServiceValidator** is a component that validates user registration requests.
+ * It checks the validity of the username, password, and roles in the registration request.
+ */
 @Component
 class AuthenticationServiceValidator {
     /**

@@ -17,7 +17,7 @@ class SupplierUpdateConsumer (
     private val inventoryRepository: InventoryRepository,
     private val orderStatusProducer: OrderStatusProducer
 ) {
-    private val logger = LoggerFactory.getLogger(SupplierConsumer::class.java)
+    private val logger = LoggerFactory.getLogger(SupplierUpdateConsumer::class.java)
 
     @KafkaListener(topics = ["supplier-order-updated"], groupId = "inventory-service")
     fun onSupplierUpdated(evt: SupplierOrderUpdatedEvent) {

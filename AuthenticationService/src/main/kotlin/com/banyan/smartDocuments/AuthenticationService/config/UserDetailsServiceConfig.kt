@@ -9,6 +9,10 @@ import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 
+/** * UserDetailsServiceConfig is a configuration class that sets up the UserDetailsService
+ * for loading user-specific data. It uses the UserRepository to fetch user details from the database.
+ * It also provides a PasswordEncoder bean for encoding passwords.
+ */
 @Configuration
 class UserDetailsServiceConfig(private val userRepository: UserRepository) {
 
