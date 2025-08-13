@@ -1,0 +1,62 @@
+1. AI Prompt Summary
+
+High-level architecture patterns
+create DTOs and entities class
+build dockerfile
+need to enable eureka server for discovery
+craete kafka event class
+create kafka configs for broker, zookeeper.
+create unit test cases for the given class
+create flyway migartion script for creation of tables and populating entry in database.
+create docker commpose file 
+create api route validator ,
+create JWT filter for authentication , user service
+
+
+2. Design Decisions
+
+API GATEWAY  -> AUTH SERVICE  -> ORDER SERVICE  -> INVENTORY SERVICE.
+
+API GATEWAY:
+
+is to enable single entry point and add secured end points routes. 
+In future we can add rate limiter as well and single entry point for UI.
+
+AUTH SERVICE :
+
+sepearte service for authentication and authorization.
+for sepeartion concern and cleaner code.
+Scalability & performance
+Consistency & reuse
+
+DISCOVERY SERVICE :
+
+For load balancing and discovery , registration of different microservices.
+
+ORDER SERVICE :
+process the request and save into database and publish the events.
+
+INVENTORY SERVICE:
+
+currently lens and frame are checked in inventory in future we can add more products by SOLID principles intems of strategy pattern.
+
+we have used api gateway , microservies pattern , service based database for each service, 
+future enhancements as kafka retry , DLT, circuit breakers.
+
+Why Kafka fits this system ?
+Kafka is a log with retention , throughput, Exactly‑once processing pattern support: Producer/consumer transactions,
+
+3. What AI Helped With - Specific parts of the code that AI was useful for.
+
+CoPilot, chatgpt, for creation of classes like DTO, entity, sql scripts and writing unit test cases.
+writing application.yaml files, creating docker image files and docker compose file.
+
+
+4. What You Had to Fix or Improve
+
+unit test are mostly good. 
+need to improve logic in service impl classes.
+code documentation method level comments are sufficient , eassy and well explained.
+
+5. Final Thoughts -
+structure of code generation is good , we can easily develop on top of that to compelete the implemenatation.
